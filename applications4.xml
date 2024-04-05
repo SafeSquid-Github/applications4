@@ -21,7 +21,7 @@
         <app id="3">
             <enabled>true</enabled>
             <comment>Request initiated by users</comment>
-            <requestheader>Sec-Fetch-Mode:\snavigate|Sec-Fetch-User:\s\?1</requestheader>
+            <requestheader>Sec-Fetch-Mode:(\s*)navigate|Sec-Fetch-User:(\s*)\?1</requestheader>
             <add_app_signatures>User Triggered Request</add_app_signatures>
         </app>
         <app id="3">
@@ -511,7 +511,7 @@
             <enabled>true</enabled>
             <comment>Represents Google's interactive and social web services. Enhances user engagement.</comment>
             <app_signatures>Unidentified Web2.0</app_signatures>
-            <requestheader>(Origin|Referer):\shttps:\/\/www\.google\.com</requestheader>
+            <requestheader>(Origin|Referer):(\s*)https:\/\/www\.google\.com</requestheader>
             <add_app_signatures>Google</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app_off>
@@ -1035,7 +1035,7 @@
         <app id="458">
             <enabled>true</enabled>
             <comment>Amazon Web Servies</comment>
-            <requestheader>(Origin|Referer):\shttps:\/\/aws\.amazon\.com</requestheader>
+            <requestheader>(Origin|Referer):(\s*)https:\/\/aws\.amazon\.com</requestheader>
             <add_app_signatures>Amazon Web Servies</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
             <group>Cloud Computing and Web Hosting Services</group>
