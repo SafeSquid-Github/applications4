@@ -290,7 +290,7 @@
             <app_signatures>Yahoo</app_signatures>
             <method>GET</method>
             <file>^\/search?</file>
-            <hostname>.*\.^(in\.search|search)</hostname>
+            <hostname>^(in\.search|search)</hostname>
             <add_app_signatures>Yahoo Search</add_app_signatures>
             <group>Search Engine</group>
         </app>
@@ -316,7 +316,7 @@
             <comment>Bing Search Queries</comment>
             <app_signatures>Bing</app_signatures>
             <file>^\/search\?</file>
-            <hostname>.*\.^www</hostname>
+            <hostname>^www</hostname>
             <add_app_signatures>Bing Search</add_app_signatures>
         </app>
         <app id="114">
@@ -343,13 +343,6 @@
             <add_app_signatures>DuckDuckGo Search</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
-        <app id="114">
-            <enabled>true</enabled>
-            <comment>DuckDuckGo Safe Search</comment>
-            <app_signatures>DuckDuckGo</app_signatures>
-            <file>/\?q(.*)&amp;kp;=1</file>
-            <add_app_signatures>DuckDuckGo Safe Search</add_app_signatures>
-        </app>
         <!--  Web Meetings  -->
         <app id="20">
             <enabled>true</enabled>
@@ -369,15 +362,6 @@
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
             <group>Online Meeting</group>
         </app>
-        <app id="32">
-            <enabled>true</enabled>
-            <comment>Skype for Business</comment>
-            <app_signatures>Unidentified Application</app_signatures>
-            <user_agent>OC/[0-9]*.[0-9].[0-9]*.[0-9]*\s\(Skype\sfor\sBusiness\)</user_agent>
-            <add_app_signatures>SkypeforBusiness</add_app_signatures>
-            <remove_app_signatures>Unidentified Application,Unidentified Web2.0</remove_app_signatures>
-            <group>Online Meeting</group>
-        </app>
         <app id="144">
             <enabled>true</enabled>
             <comment>Zoom Meeting</comment>
@@ -394,13 +378,6 @@
             <registered_domain>^goto\.com</registered_domain>
             <add_app_signatures>GoTo</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Online Meeting</group>
-        </app>
-        <app id="147">
-            <enabled>true</enabled>
-            <comment>Whereby</comment>
-            <registered_domain>^whereby\.com</registered_domain>
-            <add_app_signatures>Whereby</add_app_signatures>
             <group>Online Meeting</group>
         </app>
         <!--  Microsoft Online Applications  -->
@@ -913,7 +890,7 @@
             <enabled>true</enabled>
             <comment>YouTube For Kids</comment>
             <app_signatures>Youtube</app_signatures>
-            <hostname>.*\.^kids\.</hostname>
+            <hostname>^kids\.</hostname>
             <add_app_signatures>Youtube Kids</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
@@ -922,7 +899,7 @@
             <comment>Youtube Login</comment>
             <app_signatures>Youtube</app_signatures>
             <registered_domain>\byoutube\.com$</registered_domain>
-            <hostname>.*\.^accounts\.</hostname>
+            <hostname>^accounts\.</hostname>
             <add_app_signatures>Youtube Login</add_app_signatures>
         </app>
         <app id="96">
@@ -1011,14 +988,6 @@
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
             <group>Social Networking</group>
         </app>
-        <app id="188">
-            <enabled>true</enabled>
-            <comment>Facebook Social Networking Platform</comment>
-            <registered_domain>^facebook\.com</registered_domain>
-            <add_app_signatures>Facebook</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Social Networking</group>
-        </app>
         <app id="189">
             <enabled>true</enabled>
             <comment>Instagram Photo and Video Sharing Social Networking Service</comment>
@@ -1040,7 +1009,7 @@
             <enabled>true</enabled>
             <comment>WhatsApp Web</comment>
             <app_signatures>WhatsApp</app_signatures>
-            <hostname>.*\.^web</hostname>
+            <hostname>^web</hostname>
             <add_app_signatures>WhatsApp Web</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
             <group>Social Networking</group>
@@ -1050,7 +1019,7 @@
             <comment>WhatsApp Multimedia &amp; Image Content</comment>
             <app_signatures>Unidentified Web2.0</app_signatures>
             <registered_domain>^whatsapp\.net</registered_domain>
-            <hostname>.*\.^mmg</hostname>
+            <hostname>^mmg</hostname>
             <add_app_signatures>WhatsApp Multimedia &amp; Images</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
@@ -1696,7 +1665,7 @@
                 <app_signatures>Facebook</app_signatures>
                 <method>POST</method>
                 <file>^\/ajax\/video\/upload\/requests\/receive\/</file>
-                <hostname>.*\.^vupload-edge\.</hostname>
+                <hostname>^vupload-edge\.</hostname>
                 <add_app_signatures>Facebook Video Upload</add_app_signatures>
             </app>
             <app id="125">
@@ -1705,14 +1674,14 @@
                 <app_signatures>Facebook</app_signatures>
                 <method>POST</method>
                 <file>^\/ajax\/react_composer\/attachments\/photo\/upload</file>
-                <hostname>.*\.^upload\.</hostname>
+                <hostname>^upload\.</hostname>
                 <add_app_signatures>Facebook Photo Upload</add_app_signatures>
             </app>
             <app id="126">
                 <enabled>true</enabled>
                 <comment>Facebook Videos</comment>
                 <app_signatures>Facebook</app_signatures>
-                <hostname>.*\.video</hostname>
+                <hostname>video</hostname>
                 <add_app_signatures>Facebook Video</add_app_signatures>
             </app>
             <app id="84">
@@ -4122,7 +4091,7 @@
             <app id="56">
                 <enabled>true</enabled>
                 <comment>Pocket BookMark Login using Cookies via FireFox Account</comment>
-                <hostname>.*\.^getpocket\.com</hostname>
+                <hostname>^getpocket\.com</hostname>
                 <referer_host>\baccounts\.firefox\.com</referer_host>
                 <add_app_signatures>Pocket FireFox Login</add_app_signatures>
                 <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
@@ -4159,6 +4128,32 @@
                 <hostname>(.*)onedrive(.*)</hostname>
                 <add_app_signatures>Microsoft oneDrive</add_app_signatures>
                 <group>Microsoft 365 - Web</group>
+            </app>
+            <!-- Search engies -->
+            <app id="114">
+                <enabled>true</enabled>
+                <comment>DuckDuckGo Safe Search</comment>
+                <app_signatures>DuckDuckGo</app_signatures>
+                <file>/\?q(.*)&amp;kp;=1</file>
+                <add_app_signatures>DuckDuckGo Safe Search</add_app_signatures>
+            </app>
+            <!-- skype -->
+            <app id="32">
+                <enabled>true</enabled>
+                <comment>Skype for Business</comment>
+                <app_signatures>Unidentified Application</app_signatures>
+                <user_agent>OC/[0-9]*.[0-9].[0-9]*.[0-9]*\s\(Skype\sfor\sBusiness\)</user_agent>
+                <add_app_signatures>SkypeforBusiness</add_app_signatures>
+                <remove_app_signatures>Unidentified Application,Unidentified Web2.0</remove_app_signatures>
+                <group>Online Meeting</group>
+            </app>
+            <!-- Meeting -->
+            <app id="147">
+                <enabled>true</enabled>
+                <comment>Whereby</comment>
+                <registered_domain>^whereby\.com</registered_domain>
+                <add_app_signatures>Whereby</add_app_signatures>
+                <group>Online Meeting</group>
             </app>
         </untested>
     </applicationSignatures>
