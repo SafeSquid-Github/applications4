@@ -21,7 +21,13 @@
         <app id="3">
             <enabled>true</enabled>
             <comment>Request initiated by users</comment>
-            <requestheader>Sec-Fetch-Mode:(\s*)navigate|Sec-Fetch-User:(\s*)\?1</requestheader>
+            <requestheader>\bSec-Fetch-Mode:\s+navigate\b</requestheader>
+            <add_app_signatures>User Triggered Request</add_app_signatures>
+        </app>
+        <app id="3">
+            <enabled>true</enabled>
+            <comment>Request initiated by users</comment>
+            <requestheader>\bSec-Fetch-User:\s+\?1\b</requestheader>
             <add_app_signatures>User Triggered Request</add_app_signatures>
         </app>
         <app id="3">
@@ -33,7 +39,7 @@
         <app id="4">
             <enabled>true</enabled>
             <comment>All Web Socket Connections</comment>
-            <requestheader>Upgrade:(\s.*)websocket</requestheader>
+            <requestheader>\bUpgrade:\s+websocket\b</requestheader>
             <add_app_signatures>Web Socket</add_app_signatures>
         </app>
         <app id="6">
@@ -62,23 +68,6 @@
         </app>
         <!--  Desktop Applications  -->
         <!--  Generic applications  -->
-        <app id="34">
-            <enabled>true</enabled>
-            <comment>Postman Desktop Application</comment>
-            <app_signatures>Unidentified Application</app_signatures>
-            <user_agent>PostmanRuntime/(.*)</user_agent>
-            <add_app_signatures>Postman</add_app_signatures>
-            <remove_app_signatures>Unidentified Application</remove_app_signatures>
-            <group>API Testing</group>
-        </app>
-        <app id="43">
-            <enabled>true</enabled>
-            <comment>Generic Java Based Applications</comment>
-            <app_signatures>Unidentified Application</app_signatures>
-            <user_agent>(?i)java</user_agent>
-            <add_app_signatures>Java Application</add_app_signatures>
-            <remove_app_signatures>Unidentified Application</remove_app_signatures>
-        </app>
         <app id="44">
             <enabled>true</enabled>
             <comment>Curl command-line tool</comment>
@@ -111,7 +100,7 @@
         <app id="23">
             <enabled>true</enabled>
             <comment>Microsoft Office - Desktop Application</comment>
-            <app_signatures>Unidentified Application</app_signatures>
+            <app_signatures>Unidentified Application,Microsoft,Microsoft 365,Office Apps Live,Sharepoint</app_signatures>
             <user_agent>Microsoft\sOffice\/[0-9]*.[0-9](.*)|Microsoft\sOffice\s(.*)</user_agent>
             <add_app_signatures>Microsoft Office</add_app_signatures>
             <remove_app_signatures>Unidentified Application</remove_app_signatures>
@@ -160,7 +149,7 @@
         <app id="29">
             <enabled>true</enabled>
             <comment>Microsoft Teams - Desktop Application</comment>
-            <app_signatures>Unidentified Application</app_signatures>
+            <app_signatures>Microsoft Office</app_signatures>
             <user_agent>Mozilla\/[0-9]*\.[0-9]*.*Teams(.*)</user_agent>
             <add_app_signatures>Microsoft Teams</add_app_signatures>
             <remove_app_signatures>Unidentified Application</remove_app_signatures>
@@ -169,7 +158,7 @@
         <app id="29">
             <enabled>true</enabled>
             <comment>Microsoft Teams - Desktop Application</comment>
-            <app_signatures>Unidentified Application</app_signatures>
+            <app_signatures>Microsoft Office</app_signatures>
             <user_agent>(.*)\s(.*)teams\/[0-9](.*)|(.*)\sRT\sHttpStack</user_agent>
             <add_app_signatures>Microsoft Teams</add_app_signatures>
             <remove_app_signatures>Unidentified Application</remove_app_signatures>
@@ -178,10 +167,18 @@
         <app id="30">
             <enabled>true</enabled>
             <comment>Microsoft One Note - Desktop Application</comment>
-            <app_signatures>Microsoft Office </app_signatures>
+            <app_signatures>Microsoft Office</app_signatures>
             <user_agent>Microsoft\sOffice\soneNote/[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*(.*)</user_agent>
             <add_app_signatures>Microsoft OneNote</add_app_signatures>
             <group>Microsoft Office Suite</group>
+        </app>
+        <!--  Desktop Mail Client  -->
+        <app id="33">
+            <enabled>true</enabled>
+            <comment>Thunderbird</comment>
+            <user_agent>Mozilla\/[0-9]*.[0-9]*\s\(Windows\sNT\s[0-9]*.[0-9];\sWin[0-9]*;\sx[0-9]*;\srv:[0-9]*.[0-9]*\)\sGecko\/[0-9]*\sThunderbird\/[0-9]*.[0-9]*.[0-1]*</user_agent>
+            <add_app_signatures>Mozilla Thunderbird</add_app_signatures>
+            <group>Mail Client</group>
         </app>
         <!--  Web Browsers  -->
         <app id="9">
@@ -348,7 +345,8 @@
             <enabled>true</enabled>
             <comment>Cisco Web Conferencing Desktop Application</comment>
             <app_signatures>Unidentified Application</app_signatures>
-            <user_agent>WbxAgent|WebexTeams</user_agent>
+            <user_agent>\bsparkwindows/(\d+\.){3}\d+\b</user_agent>
+            <registered_domain>^webex\.com</registered_domain>
             <add_app_signatures>Cisco WebEx App</add_app_signatures>
             <remove_app_signatures>Unidentified Application</remove_app_signatures>
             <group>Online Meeting</group>
@@ -424,8 +422,7 @@
             <enabled>true</enabled>
             <comment>Part of Microsoft's suite of online services, used primarily for document management and storage.</comment>
             <app_signatures>Microsoft,Microsoft 365,Office Apps Live,Sharepoint</app_signatures>
-            <requestheader>(Origin|Referer|Host):(\s.*)(https:\/\/)?(.*)word(.*)\.sharepoint\.com
-            </requestheader>
+            <requestheader>\b(Origin|Referer|Host):\s+(https://)?(.*)\.sharepoint\.com\b</requestheader>
             <add_app_signatures>Sharepoint</add_app_signatures>
             <group>Microsoft 365 - Web</group>
         </app>
@@ -433,7 +430,7 @@
             <enabled>true</enabled>
             <comment>Online version of Microsoft Word, offering cloud-based document creation, editing, and collaboration with advanced features.</comment>
             <app_signatures>Microsoft 365,Office Apps Live</app_signatures>
-            <requestheader>(Origin|Referer|Host):(\s.*)(https:\/\/)?(.*)word(.*)\.officeapps\.live\.com</requestheader>
+            <requestheader>\b(Origin|Referer|Host):\s+(https://)?(.*)word(.*)\.officeapps\.live\.com\b</requestheader>
             <add_app_signatures>Microsoft Word Web</add_app_signatures>
             <group>Microsoft 365 - Web</group>
         </app>
@@ -441,7 +438,7 @@
             <enabled>true</enabled>
             <comment>Online version of Microsoft Excel, providing advanced spreadsheet editing, real-time collaboration, and analysis tools in the cloud.</comment>
             <app_signatures>Microsoft 365,Office Apps Live</app_signatures>
-            <requestheader>(Origin|Referer|Host):(\s.*)(https:\/\/)?(.*)excel(.*)\.officeapps\.live\.com</requestheader>
+            <requestheader>\b(Origin|Referer|Host):\s+(https://)?(.*)excel(.*)\.officeapps\.live\.com\b</requestheader>
             <add_app_signatures>Microsoft Excel Web</add_app_signatures>
             <group>Microsoft 365 - Web</group>
         </app>
@@ -449,7 +446,7 @@
             <enabled>true</enabled>
             <comment>Online version of Microsoft Powerpoint,, offering collaborative and interactive presentation creation and sharing.</comment>
             <app_signatures>Microsoft 365,Office Apps Live</app_signatures>
-            <requestheader>(Origin|Referer|Host):(\s.*)(https:\/\/)?(.*)powerpoint(.*)\.officeapps\.live\.com</requestheader>
+            <requestheader>\b(Origin|Referer|Host):\s+(https://)?(.*)powerpoint(.*)\.officeapps\.live\.com\b</requestheader>
             <add_app_signatures>Microsoft PowerPoint Web</add_app_signatures>
             <group>Microsoft 365 - Web</group>
         </app>
@@ -457,23 +454,15 @@
             <enabled>true</enabled>
             <comment>Microsoft's email and personal information management service that includes email, calendars, contacts, and task management.</comment>
             <app_signatures>Microsoft,Microsoft 365,Office Apps Live</app_signatures>
-            <hostname>(.*)outlook(.*)</hostname>
+            <requestheader>\b(Origin|Referer|Host):\s+(https://)?outlook\.office\.com\b</requestheader>
             <add_app_signatures>Microsoft Outlook Web</add_app_signatures>
-            <group>Microsoft 365 - Web</group>
-        </app>
-        <app id="155">
-            <enabled>true</enabled>
-            <comment>Microsoft's email and personal information management service that includes email, calendars, contacts, and task management.</comment>
-            <app_signatures>Microsoft,Microsoft 365,Office Apps Live</app_signatures>
-            <requestheader>(Origin|Referer|Host):(\s.*)(https:\/\/)?outlook\.office\.com</requestheader>
-            <add_app_signatures>Microsoft Outlook Web</add_app_signatures>
-            <group>Microsoft 365 - Web</group>
+            <group>Microsoft 365 - Web,Web Mail Client</group>
         </app>
         <app id="156">
             <enabled>true</enabled>
             <comment>A collaboration platform that integrates with Microsoft 365 suite for chats, meetings, calls, and teamwork.</comment>
             <app_signatures>Microsoft,Microsoft 365,Office Apps Live</app_signatures>
-            <hostname>(.*)teams(.*)</hostname>
+            <requestheader>\b(Origin|Referer|Host):\s+(https://)?teams\.microsoft\.com\b</requestheader>
             <add_app_signatures>Microsoft Teams Web</add_app_signatures>
             <group>Microsoft 365 - Web</group>
         </app>
@@ -487,8 +476,9 @@
         <app id="380">
             <enabled>true</enabled>
             <comment>Business analytics service providing interactive visualizations and business intelligence capabilities with an interface simple enough for end users to create their own reports and dashboards.</comment>
-            <requestheader>(Origin|Referer|Host):(\s.*)(https:\/\/)?(.*)?powerbi\.com</requestheader>
-            <add_app_signatures>Microsoft Power BI</add_app_signatures>
+            <app_signatures>Microsoft Power BI</app_signatures>
+            <requestheader>(Origin|Referer|Host):\s+(https://)?(.*)?powerbi\.com</requestheader>
+            <add_app_signatures>Microsoft Power BI - Apps</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
         <!--  Google Applications  -->
@@ -511,7 +501,7 @@
             <enabled>true</enabled>
             <comment>Represents Google's interactive and social web services. Enhances user engagement.</comment>
             <app_signatures>Unidentified Web2.0</app_signatures>
-            <requestheader>(Origin|Referer):(\s*)https:\/\/www\.google\.com</requestheader>
+            <requestheader>\b(Origin|Referer):\s+https://www\.google\.com\b</requestheader>
             <add_app_signatures>Google</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app_off>
@@ -823,23 +813,7 @@
             <remove_app_signatures>Unidentified Application</remove_app_signatures>
             <group>Business</group>
         </app>
-        <!--  Mail Client  -->
-        <app id="33">
-            <enabled>true</enabled>
-            <comment>Thunderbird</comment>
-            <user_agent>Mozilla\/[0-9]*.[0-9]*\s\(Windows\sNT\s[0-9]*.[0-9];\sWin[0-9]*;\sx[0-9]*;\srv:[0-9]*.[0-9]*\)\sGecko\/[0-9]*\sThunderbird\/[0-9]*.[0-9]*.[0-1]*</user_agent>
-            <add_app_signatures>Mozilla Thunderbird</add_app_signatures>
-            <group>Mail Client</group>
-        </app>
         <!--  Web mail client  -->
-        <app id="164">
-            <enabled>true</enabled>
-            <comment>Microsoft Outlook Email Service</comment>
-            <registered_domain>^outlook\.com</registered_domain>
-            <add_app_signatures>Outlook</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Web Mail Client</group>
-        </app>
         <app id="173">
             <enabled>true</enabled>
             <comment>Mailchimp Marketing Automation Platform</comment>
@@ -958,12 +932,6 @@
             <hostname>\byoutube(|-nocookie)\.com</hostname>
             <add_app_signatures>Youtube Users</add_app_signatures>
         </app>
-        <app id="103">
-            <enabled>true</enabled>
-            <comment>YouTube Channels [YouTube Feeds, YouTube Videos, YouTube Users, YouTube Channels]</comment>
-            <app_signatures>Youtube Feeds,Youtube Users,Youtube Video</app_signatures>
-            <add_app_signatures>Youtube Channels</add_app_signatures>
-        </app>
         <app id="85">
             <enabled>true</enabled>
             <comment>YouTube Web App</comment>
@@ -1014,28 +982,28 @@
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
             <group>Social Networking</group>
         </app>
-        <app id="131">
-            <enabled>true</enabled>
-            <comment>WhatsApp Multimedia &amp; Image Content</comment>
-            <app_signatures>Unidentified Web2.0</app_signatures>
-            <registered_domain>^whatsapp\.net</registered_domain>
-            <hostname>^mmg</hostname>
-            <add_app_signatures>WhatsApp Multimedia &amp; Images</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-        </app>
         <!--  Cloud Providers  -->
         <app id="457">
             <enabled>true</enabled>
             <comment>Amazon Web Servies</comment>
+            <registered_domain>\b(amazon|awsstatic)\.com\b</registered_domain>
+            <add_app_signatures>Amazon</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+            <group>Cloud Computing and Web Hosting Services</group>
+        </app>
+        <app id="457">
+            <enabled>true</enabled>
+            <comment>Amazon Web Servies</comment>
+            <app_signatures>Amazon</app_signatures>
             <registered_domain>^aws\.amazon\.com</registered_domain>
             <add_app_signatures>Amazon Web Servies</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0,Amazon Shopping</remove_app_signatures>
             <group>Cloud Computing and Web Hosting Services</group>
         </app>
         <app id="458">
             <enabled>true</enabled>
             <comment>Amazon Web Servies</comment>
-            <requestheader>(Origin|Referer):(\s*)https:\/\/aws\.amazon\.com</requestheader>
+            <app_signatures>Amazon</app_signatures>
+            <requestheader>(Origin|Referer):\s+https://aws\.amazon\.com</requestheader>
             <add_app_signatures>Amazon Web Servies</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
             <group>Cloud Computing and Web Hosting Services</group>
@@ -1063,303 +1031,6 @@
             <add_app_signatures>Oracle Cloud</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
             <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="462">
-            <enabled>true</enabled>
-            <comment>Alibaba Cloud</comment>
-            <registered_domain>^alibabacloud\.com</registered_domain>
-            <add_app_signatures>Alibaba Cloud</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="463">
-            <enabled>true</enabled>
-            <comment>Digitalocean</comment>
-            <registered_domain>^digitalocean\.com</registered_domain>
-            <add_app_signatures>Digitalocean</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="464">
-            <enabled>true</enabled>
-            <comment>Salesforce</comment>
-            <registered_domain>^salesforce\.com</registered_domain>
-            <add_app_signatures>Salesforce</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="465">
-            <enabled>true</enabled>
-            <comment>Rackspace</comment>
-            <registered_domain>^rackspace\.com</registered_domain>
-            <add_app_signatures>Rackspace</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="466">
-            <enabled>true</enabled>
-            <comment>Bluehost</comment>
-            <registered_domain>^bluehost\.com</registered_domain>
-            <add_app_signatures>Bluehost</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="467">
-            <enabled>true</enabled>
-            <comment>Hostgator</comment>
-            <registered_domain>^hostgator\.com</registered_domain>
-            <add_app_signatures>Hostgator</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="468">
-            <enabled>true</enabled>
-            <comment>Hostgator</comment>
-            <registered_domain>^hostgator\.com</registered_domain>
-            <add_app_signatures>Hostgator</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="469">
-            <enabled>true</enabled>
-            <comment>Siteground</comment>
-            <registered_domain>^world\.siteground\.com</registered_domain>
-            <add_app_signatures>Siteground</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="470">
-            <enabled>true</enabled>
-            <comment>GoDaddy</comment>
-            <registered_domain>^godaddy\.com</registered_domain>
-            <add_app_signatures>GoDaddy</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="471">
-            <enabled>true</enabled>
-            <comment>Dreamhost</comment>
-            <registered_domain>^dreamhost\.com</registered_domain>
-            <add_app_signatures>Dreamhost</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="472">
-            <enabled>true</enabled>
-            <comment>A2hosting</comment>
-            <registered_domain>^a2hosting\.com</registered_domain>
-            <add_app_signatures>A2hosting</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="473">
-            <enabled>true</enabled>
-            <comment>Inmotion Hosting</comment>
-            <registered_domain>^inmotionhosting\.com</registered_domain>
-            <add_app_signatures>Inmotion Hosting</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="474">
-            <enabled>true</enabled>
-            <comment>Hostinger</comment>
-            <registered_domain>^hostinger\.com</registered_domain>
-            <add_app_signatures>Hostinger</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="475">
-            <enabled>true</enabled>
-            <comment>Wpengine</comment>
-            <registered_domain>^wpengine\.com</registered_domain>
-            <add_app_signatures>Wpengine</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="476">
-            <enabled>true</enabled>
-            <comment>GreenGeeks</comment>
-            <registered_domain>^greengeeks\.com</registered_domain>
-            <add_app_signatures>GreenGeeks</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="477">
-            <enabled>true</enabled>
-            <comment>Liquidweb</comment>
-            <registered_domain>^liquidweb\.com</registered_domain>
-            <add_app_signatures>Liquidweb</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="478">
-            <enabled>true</enabled>
-            <comment>Bluehost</comment>
-            <registered_domain>^bluehost\.in</registered_domain>
-            <add_app_signatures>Bluehost</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="479">
-            <enabled>true</enabled>
-            <comment>Namecheap</comment>
-            <registered_domain>^namecheap\.com</registered_domain>
-            <add_app_signatures>Namecheap</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="480">
-            <enabled>true</enabled>
-            <comment>Hostwinds</comment>
-            <registered_domain>^hostwinds\.com</registered_domain>
-            <add_app_signatures>Hostwinds</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="481">
-            <enabled>true</enabled>
-            <comment>Hostfav</comment>
-            <registered_domain>^hostfav\.com</registered_domain>
-            <add_app_signatures>Hostfav</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="482">
-            <enabled>true</enabled>
-            <comment>ScalaHosting</comment>
-            <registered_domain>^scalahosting\.com</registered_domain>
-            <add_app_signatures>ScalaHosting</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="483">
-            <enabled>true</enabled>
-            <comment>Webhostingpad</comment>
-            <registered_domain>^webhostingpad\.com</registered_domain>
-            <add_app_signatures>Webhostingpad</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="484">
-            <enabled>true</enabled>
-            <comment>InterServer</comment>
-            <registered_domain>^interserver\.net</registered_domain>
-            <add_app_signatures>InterServer</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="485">
-            <enabled>true</enabled>
-            <comment>Fastcomet</comment>
-            <registered_domain>^fastcomet\.com</registered_domain>
-            <add_app_signatures>Fastcomet</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <app id="486">
-            <enabled>true</enabled>
-            <comment>Ovhcloud</comment>
-            <registered_domain>^ovhcloud\.com</registered_domain>
-            <add_app_signatures>Ovhcloud</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Cloud Computing and Web Hosting Services</group>
-        </app>
-        <!--  Steaming Video and Music  -->
-        <app id="423">
-            <enabled>true</enabled>
-            <comment>Spotify Music Streaming Service</comment>
-            <registered_domain>^(spotify|spotifycdn)\.com</registered_domain>
-            <add_app_signatures>Spotify</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="424">
-            <enabled>true</enabled>
-            <comment>Apple Music Streaming Service</comment>
-            <hostname>\bmusic\.apple\.com\b</hostname>
-            <add_app_signatures>Apple Music</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="425">
-            <enabled>true</enabled>
-            <comment>Amazon Music Streaming Service</comment>
-            <hostname>\bmusic\.amazon\.com\b</hostname>
-            <add_app_signatures>Amazon Music</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="426">
-            <enabled>true</enabled>
-            <comment>YouTube Music Streaming Service</comment>
-            <hostname>\bmusic\.youtube\.com\b</hostname>
-            <add_app_signatures>YouTube Music</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="427">
-            <enabled>true</enabled>
-            <comment>Pandora Music and Podcast Streaming Service</comment>
-            <registered_domain>^pandora\.com</registered_domain>
-            <add_app_signatures>Pandora</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="428">
-            <enabled>true</enabled>
-            <comment>Netflix Video Streaming Service</comment>
-            <registered_domain>^netflix\.com</registered_domain>
-            <add_app_signatures>Netflix</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="429">
-            <enabled>true</enabled>
-            <comment>Amazon Online Shopping Service</comment>
-            <registered_domain>\b(amazon|media-amazon)\.com\b</registered_domain>
-            <add_app_signatures>Amazon Shopping</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="430">
-            <enabled>true</enabled>
-            <comment>Amazon Prime Video Streaming Service</comment>
-            <registered_domain>^primevideo\.com</registered_domain>
-            <add_app_signatures>Amazon Prime Video</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="431">
-            <enabled>true</enabled>
-            <comment>Disney Video Streaming Service</comment>
-            <registered_domain>\b(disneyplus|disney)\.(com|io)\b</registered_domain>
-            <add_app_signatures>Disney Video Streaming</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="432">
-            <enabled>true</enabled>
-            <comment>Hulu Video Streaming Service</comment>
-            <registered_domain>^hulu\.com</registered_domain>
-            <add_app_signatures>Hulu</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="433">
-            <enabled>true</enabled>
-            <comment>HBO Max Video Streaming Service</comment>
-            <registered_domain>^hbomax\.com</registered_domain>
-            <add_app_signatures>HBO Max</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
-        </app>
-        <app id="434">
-            <enabled>true</enabled>
-            <comment>Espn Sports Streaming Service</comment>
-            <registered_domain>\b(espn|espncdn)\.com\b</registered_domain>
-            <add_app_signatures>ESPN Video Streaming</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-            <group>Digital Streaming Services</group>
         </app>
         <!--  CRM websites  -->
         <app id="202">
@@ -1406,18 +1077,18 @@
             <add_app_signatures>Fast</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
+        <app id="421">
+            <enabled>true</enabled>
+            <comment>Internet Speed testing Service</comment>
+            <registered_domain>^fast\.com</registered_domain>
+            <add_app_signatures>Fast</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+        </app>
         <app id="422">
             <enabled>true</enabled>
             <comment>Internet Speed testing Service</comment>
             <registered_domain>^nflxvideo\.net</registered_domain>
             <referer_host>fast\.com</referer_host>
-            <add_app_signatures>Fast</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-        </app>
-        <app id="421">
-            <enabled>true</enabled>
-            <comment>Internet Speed testing Service</comment>
-            <registered_domain>^fast\.com</registered_domain>
             <add_app_signatures>Fast</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
@@ -1589,7 +1260,7 @@
             <app id="83">
                 <enabled>true</enabled>
                 <comment>We Transfer Web App</comment>
-                <hostname>(^|\.)(wetransfer)\.(com|net)$</hostname>
+                <registered_domain>\b(wetransfer)\.(com|net)\b</registered_domain>
                 <add_app_signatures>WeTransfer Web App</add_app_signatures>
                 <group>Cloud-Based File sharing and storage services.</group>
             </app>
@@ -4154,6 +3825,338 @@
                 <registered_domain>^whereby\.com</registered_domain>
                 <add_app_signatures>Whereby</add_app_signatures>
                 <group>Online Meeting</group>
+            </app>
+            <!-- Desktop applictions -->
+            <app id="34">
+                <enabled>true</enabled>
+                <comment>Postman Desktop Application</comment>
+                <app_signatures>Unidentified Application</app_signatures>
+                <user_agent>PostmanRuntime/(.*)</user_agent>
+                <add_app_signatures>Postman</add_app_signatures>
+                <remove_app_signatures>Unidentified Application</remove_app_signatures>
+                <group>API Testing</group>
+            </app>
+            <app id="43">
+                <enabled>true</enabled>
+                <comment>Generic Java Based Applications</comment>
+                <app_signatures>Unidentified Application</app_signatures>
+                <user_agent>(?i)java</user_agent>
+                <add_app_signatures>Java Application</add_app_signatures>
+                <remove_app_signatures>Unidentified Application</remove_app_signatures>
+            </app>
+            <!-- YouTube -->
+            <app id="103">
+                <enabled>true</enabled>
+                <comment>YouTube Channels [YouTube Feeds, YouTube Videos, YouTube Users, YouTube Channels]</comment>
+                <app_signatures>Youtube Feeds,Youtube Users,Youtube Video</app_signatures>
+                <add_app_signatures>Youtube Channels</add_app_signatures>
+            </app>
+            <!-- CLoud web hosting -->
+            <app id="462">
+                <enabled>true</enabled>
+                <comment>Alibaba Cloud</comment>
+                <registered_domain>^alibabacloud\.com</registered_domain>
+                <add_app_signatures>Alibaba Cloud</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="463">
+                <enabled>true</enabled>
+                <comment>Digitalocean</comment>
+                <registered_domain>^digitalocean\.com</registered_domain>
+                <add_app_signatures>Digitalocean</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="464">
+                <enabled>true</enabled>
+                <comment>Salesforce</comment>
+                <registered_domain>^salesforce\.com</registered_domain>
+                <add_app_signatures>Salesforce</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="465">
+                <enabled>true</enabled>
+                <comment>Rackspace</comment>
+                <registered_domain>^rackspace\.com</registered_domain>
+                <add_app_signatures>Rackspace</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="466">
+                <enabled>true</enabled>
+                <comment>Bluehost</comment>
+                <registered_domain>^bluehost\.com</registered_domain>
+                <add_app_signatures>Bluehost</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="467">
+                <enabled>true</enabled>
+                <comment>Hostgator</comment>
+                <registered_domain>^hostgator\.com</registered_domain>
+                <add_app_signatures>Hostgator</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="468">
+                <enabled>true</enabled>
+                <comment>Hostgator</comment>
+                <registered_domain>^hostgator\.com</registered_domain>
+                <add_app_signatures>Hostgator</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="469">
+                <enabled>true</enabled>
+                <comment>Siteground</comment>
+                <registered_domain>^world\.siteground\.com</registered_domain>
+                <add_app_signatures>Siteground</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="470">
+                <enabled>true</enabled>
+                <comment>GoDaddy</comment>
+                <registered_domain>^godaddy\.com</registered_domain>
+                <add_app_signatures>GoDaddy</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="471">
+                <enabled>true</enabled>
+                <comment>Dreamhost</comment>
+                <registered_domain>^dreamhost\.com</registered_domain>
+                <add_app_signatures>Dreamhost</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="472">
+                <enabled>true</enabled>
+                <comment>A2hosting</comment>
+                <registered_domain>^a2hosting\.com</registered_domain>
+                <add_app_signatures>A2hosting</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="473">
+                <enabled>true</enabled>
+                <comment>Inmotion Hosting</comment>
+                <registered_domain>^inmotionhosting\.com</registered_domain>
+                <add_app_signatures>Inmotion Hosting</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="474">
+                <enabled>true</enabled>
+                <comment>Hostinger</comment>
+                <registered_domain>^hostinger\.com</registered_domain>
+                <add_app_signatures>Hostinger</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="475">
+                <enabled>true</enabled>
+                <comment>Wpengine</comment>
+                <registered_domain>^wpengine\.com</registered_domain>
+                <add_app_signatures>Wpengine</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="476">
+                <enabled>true</enabled>
+                <comment>GreenGeeks</comment>
+                <registered_domain>^greengeeks\.com</registered_domain>
+                <add_app_signatures>GreenGeeks</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="477">
+                <enabled>true</enabled>
+                <comment>Liquidweb</comment>
+                <registered_domain>^liquidweb\.com</registered_domain>
+                <add_app_signatures>Liquidweb</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="478">
+                <enabled>true</enabled>
+                <comment>Bluehost</comment>
+                <registered_domain>^bluehost\.in</registered_domain>
+                <add_app_signatures>Bluehost</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="479">
+                <enabled>true</enabled>
+                <comment>Namecheap</comment>
+                <registered_domain>^namecheap\.com</registered_domain>
+                <add_app_signatures>Namecheap</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="480">
+                <enabled>true</enabled>
+                <comment>Hostwinds</comment>
+                <registered_domain>^hostwinds\.com</registered_domain>
+                <add_app_signatures>Hostwinds</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="481">
+                <enabled>true</enabled>
+                <comment>Hostfav</comment>
+                <registered_domain>^hostfav\.com</registered_domain>
+                <add_app_signatures>Hostfav</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="482">
+                <enabled>true</enabled>
+                <comment>ScalaHosting</comment>
+                <registered_domain>^scalahosting\.com</registered_domain>
+                <add_app_signatures>ScalaHosting</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="483">
+                <enabled>true</enabled>
+                <comment>Webhostingpad</comment>
+                <registered_domain>^webhostingpad\.com</registered_domain>
+                <add_app_signatures>Webhostingpad</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="484">
+                <enabled>true</enabled>
+                <comment>InterServer</comment>
+                <registered_domain>^interserver\.net</registered_domain>
+                <add_app_signatures>InterServer</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="485">
+                <enabled>true</enabled>
+                <comment>Fastcomet</comment>
+                <registered_domain>^fastcomet\.com</registered_domain>
+                <add_app_signatures>Fastcomet</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <app id="486">
+                <enabled>true</enabled>
+                <comment>Ovhcloud</comment>
+                <registered_domain>^ovhcloud\.com</registered_domain>
+                <add_app_signatures>Ovhcloud</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Cloud Computing and Web Hosting Services</group>
+            </app>
+            <!--  Steaming Video and Music  -->
+            <app id="423">
+                <enabled>true</enabled>
+                <comment>Spotify Music Streaming Service</comment>
+                <registered_domain>^(spotify|spotifycdn)\.com</registered_domain>
+                <add_app_signatures>Spotify</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="424">
+                <enabled>true</enabled>
+                <comment>Apple Music Streaming Service</comment>
+                <hostname>\bmusic\.apple\.com\b</hostname>
+                <add_app_signatures>Apple Music</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="425">
+                <enabled>true</enabled>
+                <comment>Amazon Music Streaming Service</comment>
+                <hostname>\bmusic\.amazon\.com\b</hostname>
+                <add_app_signatures>Amazon Music</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="426">
+                <enabled>true</enabled>
+                <comment>YouTube Music Streaming Service</comment>
+                <hostname>\bmusic\.youtube\.com\b</hostname>
+                <add_app_signatures>YouTube Music</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="427">
+                <enabled>true</enabled>
+                <comment>Pandora Music and Podcast Streaming Service</comment>
+                <registered_domain>^pandora\.com</registered_domain>
+                <add_app_signatures>Pandora</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="428">
+                <enabled>true</enabled>
+                <comment>Netflix Video Streaming Service</comment>
+                <registered_domain>^netflix\.com</registered_domain>
+                <add_app_signatures>Netflix</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="429">
+                <enabled>true</enabled>
+                <comment>Amazon Online Shopping Service</comment>
+                <registered_domain>\b(amazon|media-amazon)\.com\b</registered_domain>
+                <add_app_signatures>Amazon Shopping</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="430">
+                <enabled>true</enabled>
+                <comment>Amazon Prime Video Streaming Service</comment>
+                <registered_domain>^primevideo\.com</registered_domain>
+                <add_app_signatures>Amazon Prime Video</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="431">
+                <enabled>true</enabled>
+                <comment>Disney Video Streaming Service</comment>
+                <registered_domain>\b(disneyplus|disney)\.(com|io)\b</registered_domain>
+                <add_app_signatures>Disney Video Streaming</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="432">
+                <enabled>true</enabled>
+                <comment>Hulu Video Streaming Service</comment>
+                <registered_domain>^hulu\.com</registered_domain>
+                <add_app_signatures>Hulu</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="433">
+                <enabled>true</enabled>
+                <comment>HBO Max Video Streaming Service</comment>
+                <registered_domain>^hbomax\.com</registered_domain>
+                <add_app_signatures>HBO Max</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <app id="434">
+                <enabled>true</enabled>
+                <comment>Espn Sports Streaming Service</comment>
+                <registered_domain>\b(espn|espncdn)\.com\b</registered_domain>
+                <add_app_signatures>ESPN Video Streaming</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+                <group>Digital Streaming Services</group>
+            </app>
+            <!-- whatsapp -->
+            <app id="131">
+                <enabled>true</enabled>
+                <comment>WhatsApp Multimedia &amp; Image Content</comment>
+                <app_signatures>WhatsApp</app_signatures>
+                <hostname>^mmg</hostname>
+                <add_app_signatures>WhatsApp Multimedia &amp; Images</add_app_signatures>
+                <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
             </app>
         </untested>
     </applicationSignatures>
