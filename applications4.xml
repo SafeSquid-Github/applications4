@@ -1222,11 +1222,6 @@
             <comment>Offer a wide variety of entertainment content, including movies, TV shows, and music, available for streaming over the internet to various devices.</comment>
             <add_app_category>Digital Streaming Services</add_app_category>
         </app_categories_entry>
-        <app_categories_entry id="10">
-            <enabled>true</enabled>
-            <comment>Offer a wide variety of entertainment content, including movies, TV shows, and music, available for streaming over the internet to various devices.</comment>
-            <add_app_category>Digital Streaming Services</add_app_category>
-        </app_categories_entry>
         <untested>
             <!-- request signatures -->
             <app id="5">
