@@ -577,7 +577,7 @@
             <app_signatures>Google</app_signatures>
             <file>^\/search\?</file>
             <hostname>^www\.</hostname>
-            <add_app_signatures>Google Search</add_app_signatures>
+            <add_app_signatures>Google Search,Google UnSafe Search</add_app_signatures>
             <group>Search Engine</group>
         </app>
         <app id="71">
@@ -585,7 +585,7 @@
             <comment>Allows creation of custom search engines. Tailors search experiences.</comment>
             <app_signatures>Google APIs</app_signatures>
             <file>^\/customsearch/v1?</file>
-            <add_app_signatures>Google Custom Search</add_app_signatures>
+            <add_app_signatures>Google Custom Search,Google UnSafe Search</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
         <app id="72">
@@ -594,17 +594,12 @@
             <app_signatures>Google Search</app_signatures>
             <file>\bsafe=active\b</file>
             <add_app_signatures>Google Safe Search</add_app_signatures>
-        </app>
-        <app id="89">
-            <enabled>true</enabled>
-            <comment>Google Search Queries With Safety Mode Disabled</comment>
-            <app_signatures>!Google Safe Search,Google Search</app_signatures>
-            <add_app_signatures>Google UnSafe Search</add_app_signatures>
+            <remove_app_signatures>Google UnSafe Search</remove_app_signatures>
         </app>
         <app id="75">
             <enabled>true</enabled>
             <comment>Specific services for Google client interactions. Enhances functionality and security.</comment>
-            <hostname>clients[0-9].google.com</hostname>
+            <hostname>clients[0-9]\.google\.com</hostname>
             <add_app_signatures>Clients4.google.com</add_app_signatures>
         </app>
         <app id="541">
