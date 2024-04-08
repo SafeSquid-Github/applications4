@@ -280,6 +280,7 @@
             <registered_domain>^(yahoo|yimg)\.</registered_domain>
             <add_app_signatures>Yahoo</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+            <group>Search Engine</group>
         </app>
         <app id="105">
             <enabled>true</enabled>
@@ -289,7 +290,6 @@
             <file>^\/search?</file>
             <hostname>^(in\.search|search)</hostname>
             <add_app_signatures>Yahoo Search</add_app_signatures>
-            <group>Search Engine</group>
         </app>
         <app id="106">
             <enabled>true</enabled>
@@ -578,6 +578,7 @@
             <file>^\/search\?</file>
             <hostname>^www\.</hostname>
             <add_app_signatures>Google Search</add_app_signatures>
+            <group>Search Engine</group>
         </app>
         <app id="71">
             <enabled>true</enabled>
