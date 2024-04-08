@@ -336,7 +336,7 @@
             <enabled>true</enabled>
             <comment>DuckDuckGo Search</comment>
             <app_signatures>DuckDuckGo</app_signatures>
-            <file>^\/\?q</file>
+            <file>^\/\?</file>
             <add_app_signatures>DuckDuckGo Search</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
