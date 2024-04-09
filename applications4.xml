@@ -284,12 +284,12 @@
         </app>
         <app id="105">
             <enabled>true</enabled>
-            <comment>Yahoo Search Queries</comment>
+            <comment>Yahoo Search (unsafe Search)</comment>
             <app_signatures>Yahoo</app_signatures>
             <method>GET</method>
             <file>^\/search?</file>
             <hostname>^(in\.search|search)</hostname>
-            <add_app_signatures>Yahoo Search</add_app_signatures>
+            <add_app_signatures>Yahoo Search,Yahoo UnSafe Search</add_app_signatures>
         </app>
         <app id="106">
             <enabled>true</enabled>
@@ -298,6 +298,7 @@
             <method>GET</method>
             <file>\bvm=r\b</file>
             <add_app_signatures>Yahoo Safe Search</add_app_signatures>
+            <remove_app_signatures>Yahoo UnSafe Search</remove_app_signatures>
         </app>
         <app id="112">
             <enabled>true</enabled>
@@ -310,11 +311,11 @@
         </app>
         <app id="113">
             <enabled>true</enabled>
-            <comment>Bing Search Queries</comment>
+            <comment>Bing Search (unsafe Search)</comment>
             <app_signatures>Bing</app_signatures>
             <file>^\/search\?</file>
             <hostname>^www</hostname>
-            <add_app_signatures>Bing Search</add_app_signatures>
+            <add_app_signatures>Bing Search,Bing UnSafe Search</add_app_signatures>
         </app>
         <app id="114">
             <enabled>true</enabled>
@@ -322,6 +323,7 @@
             <app_signatures>Bing</app_signatures>
             <file>\badlt=strict\b</file>
             <add_app_signatures>Bing Safe Search</add_app_signatures>
+            <remove_app_signatures>Bing UnSafe Search</remove_app_signatures>
         </app>
         <app id="116">
             <enabled>true</enabled>
@@ -334,11 +336,19 @@
         </app>
         <app id="117">
             <enabled>true</enabled>
-            <comment>DuckDuckGo Search</comment>
+            <comment>DuckDuckGo Search (unsafe Search)</comment>
             <app_signatures>DuckDuckGo</app_signatures>
             <file>^\/\?</file>
-            <add_app_signatures>DuckDuckGo Search</add_app_signatures>
+            <add_app_signatures>DuckDuckGo Search,DuckDuckGo UnSafe Search</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+        </app>
+        <app id="117">
+            <enabled>true</enabled>
+            <comment>DuckDuckGo Safe Search</comment>
+            <app_signatures>DuckDuckGo Search</app_signatures>
+            <file>\&amp;kp=1</file>
+            <add_app_signatures>DuckDuckGo Safe Search</add_app_signatures>
+            <remove_app_signatures>DuckDuckGo UnSafe Search</remove_app_signatures>
         </app>
         <!--  Web Meetings  -->
         <app id="20">
@@ -505,6 +515,30 @@
             <add_app_signatures>Google</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app_off>
+        <app id="70">
+            <enabled>true</enabled>
+            <comment>Google Search (unsafe Search)</comment>
+            <app_signatures>Google</app_signatures>
+            <file>^\/search\?</file>
+            <add_app_signatures>Google Search,Google UnSafe Search</add_app_signatures>
+            <group>Search Engine</group>
+        </app>
+        <app id="71">
+            <enabled>true</enabled>
+            <comment>Allows creation of custom search engines. Tailors search experiences.</comment>
+            <app_signatures>Google APIs</app_signatures>
+            <file>^\/customsearch/v1?</file>
+            <add_app_signatures>Google Custom Search,Google UnSafe Search</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+        </app>
+        <app id="72">
+            <enabled>true</enabled>
+            <comment>Filters search results for safety. Blocks explicit content.</comment>
+            <app_signatures>Google Search</app_signatures>
+            <file>\&amp;safe=active</file> 
+            <add_app_signatures>Google Safe Search</add_app_signatures>
+            <remove_app_signatures>Google UnSafe Search</remove_app_signatures>
+        </app>
         <app id="61">
             <enabled>true</enabled>
             <comment>Google's email platform. Offers communication and organization tools.</comment>
@@ -570,31 +604,6 @@
             <hostname>\b(google|)apis\.</hostname>
             <add_app_signatures>Google APIs</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-        </app>
-        <app id="70">
-            <enabled>true</enabled>
-            <comment>Processes user search requests. Delivers relevant search results.</comment>
-            <app_signatures>Google</app_signatures>
-            <file>^\/search\?</file>
-            <hostname>^www\.</hostname>
-            <add_app_signatures>Google Search,Google UnSafe Search</add_app_signatures>
-            <group>Search Engine</group>
-        </app>
-        <app id="71">
-            <enabled>true</enabled>
-            <comment>Allows creation of custom search engines. Tailors search experiences.</comment>
-            <app_signatures>Google APIs</app_signatures>
-            <file>^\/customsearch/v1?</file>
-            <add_app_signatures>Google Custom Search,Google UnSafe Search</add_app_signatures>
-            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
-        </app>
-        <app id="72">
-            <enabled>true</enabled>
-            <comment>Filters search results for safety. Blocks explicit content.</comment>
-            <app_signatures>Google Search</app_signatures>
-            <file>\bsafe=active\b</file>
-            <add_app_signatures>Google Safe Search</add_app_signatures>
-            <remove_app_signatures>Google UnSafe Search</remove_app_signatures>
         </app>
         <app id="75">
             <enabled>true</enabled>
