@@ -861,12 +861,6 @@
             <group>Web Mail Client</group>
         </app>
         <!--  Youtube  -->
-        <app id="90">
-            <enabled>true</enabled>
-            <comment>YouTube Web2.0 Applications</comment>
-            <app_signatures>Youtube Mobile App</app_signatures>
-            <add_app_signatures>Youtube</add_app_signatures>
-        </app>
         <app id="91">
             <enabled>true</enabled>
             <comment>YouTube Shortened URL</comment>
@@ -965,9 +959,10 @@
         <app id="85">
             <enabled>true</enabled>
             <comment>YouTube Web App</comment>
-            <hostname>ytimg\.com|yt3\.ggpht.com|accounts\.google\.(com|co\.in)</hostname>
+            <registered_domain>\b(ytimg|ggpht)\.com\b</registered_domain>
             <referer>youtube.com</referer>
             <add_app_signatures>YouTube Web App</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
         <!--  Social Networking  -->
         <app id="186">
@@ -1171,6 +1166,56 @@
             <add_app_signatures>OpenAI</add_app_signatures>
             <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
         </app>
+        <app id="560">
+            <enabled>true</enabled>
+            <comment>OpenAI - AI research and deployment</comment>
+            <registered_domain>^(openai|chatgpt|oaistatic)\.com</registered_domain>
+            <requestheader>\b(Origin|Referer|Host):\s+(https://)?chat\.openai\.com\b</requestheader>
+            <add_app_signatures>ChatGPT</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+            <group>AI ChatBots</group>
+        </app>
+        <app id="2">
+            <enabled>true</enabled>
+            <comment>Character AI</comment>
+            <registered_domain>^character\.ai</registered_domain>
+            <add_app_signatures>Character AI</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+            <group>AI ChatBots</group>
+        </app>
+        <app id="3">
+            <enabled>true</enabled>
+            <comment>Quillbot</comment>
+            <registered_domain>^quillbot\.com</registered_domain>
+            <add_app_signatures>Quillbot</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+            <group>AI ChatBots</group>
+        </app>
+        <app id="4">
+            <enabled>true</enabled>
+            <comment>Midjourney</comment>
+            <registered_domain>^midjourney\.com</registered_domain>
+            <add_app_signatures>Midjourney</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+            <group>AI ChatBots</group>
+        </app>
+        <app id="1">
+            <enabled>true</enabled>
+            <comment>Hugging Face</comment>
+            <registered_domain>^huggingface\.co</registered_domain>
+            <add_app_signatures>Hugging Face</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+            <group>AI ChatBots</group>
+        </app>
+        <app id="2">
+            <enabled>true</enabled>
+            <comment>Google Gemini</comment>
+            <app_signatures>Google</app_signatures>
+            <requestheader>\b(Origin|Referer|Host):\s+(https://)?gemini\.google\.com\b</requestheader>
+            <add_app_signatures>Google Gemini</add_app_signatures>
+            <remove_app_signatures>Unidentified Web2.0</remove_app_signatures>
+            <group>AI ChatBots</group>
+        </app>
         <!-- Add application signatures in Bypass SSL Inspection if required -->
         <app id="815">
             <enabled>true</enabled>
@@ -1260,6 +1305,11 @@
             <add_app_category>Digital Streaming Services</add_app_category>
         </app_categories_entry>
         <app_categories_entry id="17">
+            <enabled>true</enabled>
+            <comment>AI chatbots are computer programs powered by artificial intelligence that simulate human-like conversations.</comment>
+            <add_app_category>AI ChatBots</add_app_category>
+        </app_categories_entry>
+        <app_categories_entry id="18">
             <enabled>true</enabled>
             <comment>Applications That require bypass of HTTPS Inspection to Work</comment>
             <add_app_category>Bypass HTTPS Inspection</add_app_category>
@@ -1451,6 +1501,12 @@
                 <add_app_signatures>Youtube Mobile App</add_app_signatures>
                 <remove_app_signatures>Unidentified Application</remove_app_signatures>
                 <group>Android Apps</group>
+            </app>
+            <app id="90">
+                <enabled>true</enabled>
+                <comment>YouTube Web2.0 Applications</comment>
+                <app_signatures>Youtube Mobile App</app_signatures>
+                <add_app_signatures>Youtube</add_app_signatures>
             </app>
             <app id="38">
                 <enabled>true</enabled>
