@@ -1223,18 +1223,6 @@
             <app_signatures>AnyDesk,Cisco WebEx App,Mobile Apps,Online Meeting,Remote Desktop,Windows Updates</app_signatures>
             <group>Bypass HTTPS Inspection</group>
         </app>
-        <app>
-            <enabled>false</enabled>
-            <comment>IP based request to an IPv4 Host</comment>
-            <app_signatures>IPV4 Host,IP Request</app_signatures>
-            <group></group>
-        </app>
-        <app>
-            <enabled>false</enabled>
-            <comment>IP based request to an IPv6 Host </comment>
-            <app_signatures>IPV6 Host,IP Request</app_signatures>
-            <group></group>
-        </app>
         <!--  Application category  -->
         <app_categories_entry id="1">
             <enabled>true</enabled>
