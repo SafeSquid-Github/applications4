@@ -33,7 +33,7 @@
         <app id="3">
             <enabled>true</enabled>
             <comment>Binary format to encode structured data.</comment>
-            <mime>application/x-protobuf</mime>
+            <mime>application/.*protobuf</mime>
             <add_app_signatures>ProtoBuf Content</add_app_signatures>
         </app>
         <app id="4">
