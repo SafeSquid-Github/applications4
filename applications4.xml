@@ -105,6 +105,15 @@
             <remove_app_signatures>Unidentified Application</remove_app_signatures>
             <group>Remote Desktop</group>
         </app>
+        <app id="21">
+            <enabled>true</enabled>
+            <comment>AnyDesk Desktop Application for Remote Support</comment>
+            <app_signatures>Unidentified Application</app_signatures>
+            <host_name>.*\.anydesk\.com</host_name>
+            <add_app_signatures>AnyDesk</add_app_signatures>
+            <remove_app_signatures>Unidentified Application</remove_app_signatures>
+            <group>Remote Desktop</group>
+        </app>
         <!-- Java DSC Verification Request -->
         <app id="21">
             <enabled>true</enabled>
